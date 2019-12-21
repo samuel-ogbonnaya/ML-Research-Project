@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Apr 30 16:29:33 2018
-
-@author: isogb
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Sat Mar 17 19:17:20 2018
 
 @author: isogb
+@ Machine Learning Classifers Evaluation
+
+
 """
 import numpy
 import pandas as pd
