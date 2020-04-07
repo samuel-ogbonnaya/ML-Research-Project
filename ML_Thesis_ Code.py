@@ -75,16 +75,12 @@ bank_data[numerical] = scaler.fit_transform(bank_data[numerical])
 bank_data_processed = pd.get_dummies(bank_data)
 bank_data_processed = bank_data_processed.drop('duration', axis=1)
 #bank_data_processed.info()
-#return bank_data_processed.head()
-#return bank_data_processed.describe()
 #scatter_matrix(bank_data_processed, figsize=(30,15))
  
 # In[2]:
-
 # Shuffle Split for Training, Validation and Testion dataset  
 numpy.random.seed(100)    
 split = StratifiedShuffleSplit(n_splits=10, test_size = 0.3, random_state=42)    
-#split = StratifiedShuffleSplit(n_splits=10, test_size = 0.3)
 for train_index, test_index in split.split(bank_data_processed, bank_data_processed['y']):
     train_val_set_1 = bank_data_processed.loc[train_index]
     testing_1 = bank_data_processed.loc[test_index]
@@ -93,14 +89,12 @@ print (len(training_1), "training +", len(validation_1), "validation +", len(tes
 
 #Statistics for the training, validation and testing data sets
 training_1.info()
-#training_1.describe()
 print(training_1['y'].value_counts())
 #print(training_1['y'].value_counts()/len(training_1))
 print(validation_1['y'].value_counts())
 #validation_1['y'].value_counts()/len(validation_1)
 print(testing_1['y'].value_counts())
-#print(testing_1['y'].value_counts()/len(testing_1))
-#print(train_val_set_1['y'].value_counts())
+
         
 # In[3]:      
 #Handling data imbalance for training set
@@ -121,8 +115,6 @@ train_upsample = pd.concat([train_negative, train_positive_upsample])
 # Display new class counts
 #print(train_upsample['y'].value_counts()/len(train_upsample))  
 #print(train_upsample['y'].value_counts()) 
-#return train_upsample.info()
-#return train_upsample.describe()
 
 # In[4]:    
 #Handling data imbalance for validation set
@@ -161,10 +153,7 @@ train_val_positive_upsample = resample(train_val_positive,
   
 # Combine majority class with upsampled minority class
 train_val_upsample = pd.concat([train_val_negative, train_val_positive_upsample])
-    
-# Display new class counts
-#return validation_upsample['y'].value_counts()/len(validation_upsample) 
-#print(train_val_upsample['y'].value_counts())
+
 # In[5]:
 # create X, y for imbalanced train set used for performance validation
 X_training_imb = training_1.drop('y', axis=1)
@@ -253,9 +242,10 @@ selected_features = ['age', 'campaign', 'pdays', 'previous', 'emp.var.rate',
 #return X_training_FS.info()
 #X_testing_FS = X_testing.drop(dropped_features, axis=1)
 #print("Validation Shape with FS:", X_validation_FS.shape)
-#    
+
+
 # In[6.1]:
-# Feature Selction usinf Kbest means method
+# Feature Selction using Kbest means method
 
 #selector = SelectKBest(chi2, k=63)
 #X_training_k = selector.fit(X_training, y_training)
@@ -717,9 +707,9 @@ plt.legend()
 plt.savefig('Opt_Logistic_Regression_Learning_Curve.jpeg')  
 
 #
-### In[26]:
-###Testing the Logistic Regression Model
-#    
+# In[26]:
+#Testing the Logistic Regression Model
+  
 ### Logistic Regression Testing with Balanced training set
 y_pred_test_LR = model_LR_bal.predict(X_testing)
 y_pred_test_LR = model_LR_bal.predict(X_testing_FS)
@@ -743,7 +733,7 @@ plt.figure(figsize=(6,6))
 plot_confusion_matrix(confusion_matrix_LR, classes=['not subscribe','subscribe'],
                       title='Logistic Regression Confusion matrix')
 
-					  # In[28]:
+# In[28]:
 # Decision Tree Models
 
 ## Decision tree model without GridserachCV on imbalanced training set
