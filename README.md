@@ -1,4 +1,4 @@
-# ML-Research-project
+# ML-Research-Project
 Application of Machine Learning Classifiers for Predicting the Outcome of Bank Telemarketing
 
 
